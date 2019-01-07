@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Word Of God</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header> 
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let i of jsonItem">
+      <ion-item (click)="displayWordOfGodByID(i.wordOfGodID)">
+        <h1 [innerHTML]="i.wordOfGodTitle"></h1>
+        <ion-icon name="calendar"></ion-icon>&nbsp; {{i.wordOfGodDate}}
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

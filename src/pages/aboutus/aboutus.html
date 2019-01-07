@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>About Us</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let i of jsonItem ">
+    <ion-item>
+      <p [innerHTML]="i.pageContent"></p>
+    </ion-item>
+  </ion-list>
+</ion-content>
