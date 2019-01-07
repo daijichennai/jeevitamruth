@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let i of allEpisode"> 
+  <div  *ngFor="let i of allEpisode">
+  <ion-card (click)="openWebpage(i.youtubeUrl);" > 
     <img width="100%" [src]='getYouTubeVideoID(i.youtubeUrl)'>  
     
     <ion-card-content>
@@ -25,7 +26,7 @@
     </ion-row>
 
   </ion-card>
-
+</div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>

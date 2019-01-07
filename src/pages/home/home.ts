@@ -3,7 +3,7 @@ import { NavController, NavParams, MenuController, LoadingController } from 'ion
 import { CommFuncProvider } from '../../providers/comm-func/comm-func';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -20,11 +20,27 @@ export class HomePage {
     public http: HttpClient,
     public menuCtrl: MenuController,
     public loadingCtrl: LoadingController,
-    public myFunc: CommFuncProvider
+    public myFunc: CommFuncProvider,
+    private iab: InAppBrowser
   ) {
     this.domainName = myFunc.domainName;
 
   }
+
+  openWebpage(url: string) {
+    const options: InAppBrowserOptions = {
+      toolbar: 'no',
+      location: 'no',
+      zoom: 'no',
+      fullscreen: 'yes',
+    }
+
+    // Opening a URL and returning an InAppBrowserObject
+    this.iab.create(url, '_system', options);
+
+
+  } 
+
 
   ionViewDidLoad() {
     this.getAllEpisodeData();

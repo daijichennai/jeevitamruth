@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommFuncProvider } from '../providers/comm-func/comm-func';
 import { HttpClientModule } from '@angular/common/http'; 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommFuncProvider
   ]
