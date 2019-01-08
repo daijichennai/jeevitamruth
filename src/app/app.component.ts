@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,7 +15,13 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, icon: string, mode: string }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public alertCtrl: AlertController,
+    public app: App,
+    ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -35,6 +41,16 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.platform.registerBackButtonAction(() => {
+        let nav = this.app.getActiveNav();
+        if (nav.canGoBack()) { //Can we go back?
+          nav.pop();
+        } else {
+          this.exitFunction();
+        }
+      });
+
     });
   }
 
@@ -45,4 +61,27 @@ export class MyApp {
       "mode": page.mode
     });
   }
+
+  exitFunction() {
+    let alert = this.alertCtrl.create({
+      title: 'Exit Jeevitamruth ?',
+      message: 'Do you want to exit the app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Exit',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
+  } 
+
 }

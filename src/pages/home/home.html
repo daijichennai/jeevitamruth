@@ -8,25 +8,24 @@
 </ion-header>
 
 <ion-content>
-  <div  *ngFor="let i of allEpisode">
-  <ion-card (click)="openWebpage(i.youtubeUrl);" > 
-    <img width="100%" [src]='getYouTubeVideoID(i.youtubeUrl)'>  
-    
-    <ion-card-content>
-      <p [innerHTML]="i.episodeTitle" ></p>
-    </ion-card-content>
-    
-    <ion-row>       
-      <ion-col text-center >
-        <button ion-button icon-start clear small>
-          <ion-icon name="share-alt"></ion-icon>
-          <div>Share</div>
-        </button>
-      </ion-col>  
-    </ion-row>
-
-  </ion-card>
-</div>
+  <div *ngFor="let i of allEpisode">
+    <ion-card>
+      <div (click)="openWebpage(i.youtubeUrl);">
+        <img width="100%" [src]='getYouTubeVideoID(i.youtubeUrl)'>
+        <ion-card-content>
+          <p [innerHTML]="i.episodeTitle"></p>
+        </ion-card-content>
+      </div>
+      <ion-row>
+        <ion-col text-center (click)="shareVideo(i.episodeTitle,i.youtubeUrl);">
+          <button ion-button icon-start clear small >
+            <ion-icon name="share-alt"></ion-icon>
+            <div>Share</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>

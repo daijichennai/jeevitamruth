@@ -11,7 +11,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommFuncProvider } from '../providers/comm-func/comm-func';
 import { HttpClientModule } from '@angular/common/http'; 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { SocialSharing } from "@ionic-native/social-sharing";
+import { Network } from "@ionic-native/network";
 @NgModule({
   declarations: [
     MyApp,
@@ -33,6 +35,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    ScreenOrientation,
+    SocialSharing,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommFuncProvider
   ]
